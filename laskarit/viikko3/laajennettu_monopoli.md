@@ -8,7 +8,8 @@ title: Monopoli
       Pelinappula  -- "2-8" Pelaaja
       Ruutu "40" -- "1" Pelilauta
       Ruutu  --  Pelinappula
-
+      Katuruutu <-- "4" Talo
+      Katuruutu <-- "1" Hotelli
 
       Pelilauta <-- Vankila
       Pelilauta <-- AloitusRuutu
@@ -25,6 +26,7 @@ title: Monopoli
           heitä()
       }
       class Pelaaja{
+          rahaa
       }
       class Pelinappula{
           pelaaja
@@ -55,5 +57,9 @@ title: Monopoli
       }
       class Kortti{
         Toiminto()
+      }
+      class Talo{
+      }
+      class Hotelli{
       }
 ```
