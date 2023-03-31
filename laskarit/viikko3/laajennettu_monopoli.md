@@ -16,7 +16,7 @@ title: Monopoli
       Ruutu <-- AloitusRuutu
       Ruutu <-- Sattumajayhteismaa
       Ruutu <-- Asematjalaitokset
-      Ruutu <-- Katu_ruutu
+      Ruutu <-- Katuruutu
 
       Sattumajayhteismaa <-- Kortti
 
