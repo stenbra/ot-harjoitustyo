@@ -8,23 +8,25 @@ title: Monopoli
       Pelinappula  -- "2-8" Pelaaja
       Ruutu "40" -- "1" Pelilauta
       Ruutu  --  Pelinappula
+      Katuruutu <-- "4" Talo
+      Katuruutu <-- "1" Hotelli
 
+      Pelilauta <-- Vankila
+      Pelilauta <-- AloitusRuutu
+      Ruutu <-- Vankila
+      Ruutu <-- AloitusRuutu
+      Ruutu <-- Sattumajayhteismaa
+      Ruutu <-- Asematjalaitokset
+      Ruutu <-- Katuruutu
 
-      Pelilauta <|-- Vankila
-      Pelilauta <|-- AloitusRuutu
-      Ruutu <|-- Vankila
-      Ruutu <|-- AloitusRuutu
-      Ruutu <|-- Sattuma_ja_yhteismaa
-      Ruutu <|-- Asemat_ja_laitokset
-      Ruutu <|-- Katu_ruutu
-
-      Sattuma_ja_yhteismaa <|-- Kortti
+      Sattumajayhteismaa <-- Kortti
 
       class Noppa{
           arvo
           heitä()
       }
       class Pelaaja{
+          rahaa
       }
       class Pelinappula{
           pelaaja
@@ -40,18 +42,24 @@ title: Monopoli
           seuraava_ruutu
           Toiminto()
       }
-      class Vankila{}
-      class AloitusRuutu{}
-      class Sattuma_ja_yhteismaa{
-
+      class Vankila{
       }
-      class Asemat_ja_laitokset {
-
+      class AloitusRuutu{
       }
-      class Katu_ruutu{
+      class Sattumajayhteismaa{
+          NostaKortti()
+      }
+      class Asematjalaitokset {
+        Taxes()
+      }
+      class Katuruutu{
         nimi
       }
       class Kortti{
         Toiminto()
+      }
+      class Talo{
+      }
+      class Hotelli{
       }
 ```
