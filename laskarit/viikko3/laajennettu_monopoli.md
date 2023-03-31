@@ -45,9 +45,10 @@ title: Monopoli
       class AloitusRuutu{
       }
       class Sattumajayhteismaa{
-
+          NostaKortti()
       }
       class Asematjalaitokset {
+        Taxes()
       }
       class Katuruutu{
         nimi
