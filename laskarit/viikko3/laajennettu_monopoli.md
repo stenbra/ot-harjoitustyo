@@ -10,15 +10,15 @@ title: Monopoli
       Ruutu  --  Pelinappula
 
 
-      Pelilauta <|-- Vankila
-      Pelilauta <|-- AloitusRuutu
-      Ruutu <|-- Vankila
-      Ruutu <|-- AloitusRuutu
-      Ruutu <|-- Sattuma_ja_yhteismaa
-      Ruutu <|-- Asemat_ja_laitokset
-      Ruutu <|-- Katu_ruutu
+      Pelilauta <-- Vankila
+      Pelilauta <-- AloitusRuutu
+      Ruutu <-- Vankila
+      Ruutu <-- AloitusRuutu
+      Ruutu <-- Sattumajayhteismaa
+      Ruutu <-- Asematjalaitokset
+      Ruutu <-- Katu_ruutu
 
-      Sattuma_ja_yhteismaa <|-- Kortti
+      Sattumajayhteismaa <-- Kortti
 
       class Noppa{
           arvo
@@ -40,15 +40,16 @@ title: Monopoli
           seuraava_ruutu
           Toiminto()
       }
-      class Vankila{}
-      class AloitusRuutu{}
-      class Sattuma_ja_yhteismaa{
+      class Vankila{
+      }
+      class AloitusRuutu{
+      }
+      class Sattumajayhteismaa{
 
       }
-      class Asemat_ja_laitokset {
-
+      class Asematjalaitokset {
       }
-      class Katu_ruutu{
+      class Katuruutu{
         nimi
       }
       class Kortti{
