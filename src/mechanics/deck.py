@@ -1,6 +1,6 @@
 import random
-class Deck:
-    def __init__(self,cardList):
+class DrawPile:
+    def __init__(self,cardList:list):
         self.cardPool = cardList
         self.deckInUse = self.shuffleNewDeck()
 
@@ -14,5 +14,5 @@ class Deck:
         return hand
 
     def shuffleNewDeck(self):
-        shuffledDeck= random.shuffle(self.cardPool)
+        shuffledDeck= random.sample(self.cardPool,len(self.cardPool))
         return shuffledDeck
