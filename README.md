@@ -8,6 +8,8 @@ The project is a pygame project. The game is a strategic card game where you try
 
 [Changelog](https://github.com/stenbra/ot-harjoitustyo/blob/master/Documentation/changelog.md)
 
+[Architecture](https://github.com/stenbra/ot-harjoitustyo/blob/master/Documentation/architecture.md)
+
 ## Commands
 ### Starting the program
 ` poetry run invoke start `
