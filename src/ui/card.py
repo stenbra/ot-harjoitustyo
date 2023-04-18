@@ -2,7 +2,7 @@ import pygame
 
 
 class card:
-    def __init__(self, scaleX, scaleY, onClick, cardPool, action):
+    def __init__(self, scaleX, scaleY, onClick, cardPool, action, hand):
 
         cardFont = pygame.font.Font('freesansbold.ttf', 32)
         text = cardFont.render(
@@ -20,6 +20,7 @@ class card:
         self.textRect = self.text.get_rect()
         self.onclick = onClick
         self.clicked = False
+        self.hand = hand
 
     def click_check(self):
         mousePos = pygame.mouse.get_pos()
@@ -46,3 +47,6 @@ class card:
     def set_scale(self, x, y):
         self.image = pygame.transform.scale(
             self.img, (int(self.imgWidth*x), int(self.imgHeight*y)))
+    
+    def select_card(self):
+        pass

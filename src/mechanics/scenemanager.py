@@ -1,4 +1,4 @@
-from ui.scene import Scene
+from mechanics.scene import Scene
 
 
 class Scenemanager:

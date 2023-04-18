@@ -1,7 +1,7 @@
 import pygame
 import mechanics.card_actions as actions
 import mechanics.card_logic as logic
-from ui.main_menu import MainMenuScene
+from main_menu import MainMenuScene
 from mechanics.scenemanager import Scenemanager
 
 

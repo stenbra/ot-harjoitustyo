@@ -1,6 +1,6 @@
 class Health:
     def __init__(self, max_health=7):
-        self.maxHealth = max_health
+        self.max_health = max_health
         self.current_health = max_health
 
     def take_damage(self, damage_amount):
