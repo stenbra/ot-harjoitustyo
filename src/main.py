@@ -3,6 +3,8 @@ import mechanics.card_actions as actions
 import mechanics.card_logic as logic
 from ui.main_menu import MainMenuScene
 from mechanics.scenemanager import Scenemanager
+
+
 def main():
     # pygame setup
     pygame.init()
@@ -12,9 +14,9 @@ def main():
 
     reader = actions.ActionLoader()
     pool = logic.CardPool(reader)
-    print(str(pool.cardStats['GUARD']))
-    mainmenu= MainMenuScene("main-menu")
-    sceneManager = Scenemanager([mainmenu],screen)
+    print(str(pool.card_stats['GUARD']))
+    mainmenu = MainMenuScene("main-menu")
+    sceneManager = Scenemanager([mainmenu], screen)
     sceneManager.set_active_scene("main-menu")
 
     while running:
@@ -33,6 +35,7 @@ def main():
         pygame.display.flip()
 
     clock.tick(60)
-    
+
+
 if __name__ == "__main__":
     main()

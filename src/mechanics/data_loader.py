@@ -1,25 +1,25 @@
 class DataLoader:
     @staticmethod
-    def LoadDataFromFile(file):
-        f = open(file,"r")
-        fData = f.read()
-        f.close()
-        data= DataLoader.ParseData(fData)
+    def load_data_from_file(file):
+        open_file = open(file, "r")
+        file_data = open_file.read()
+        open_file.close()
+        data = DataLoader.parse_data(file_data)
         return data
-    
+
     @staticmethod
-    def ParseData(data):
-        dataDict ={}
-        body = data.split("##")[1].replace("\n","")
-        actions= body.split("_")
+    def parse_data(data):
+        data_dict = {}
+        body = data.split("##")[1].replace("\n", "")
+        actions = body.split("_")
         for i in actions:
-            actionDataDict={}
-            dataParts = i.split("|")
-            for j in range(1,len(dataParts)):
-                parts=dataParts[j].split(":")
-                if len(parts)== 2:
-                    actionDataDict[parts[0]] = parts[1]
+            action_data_dict = {}
+            data_parts = i.split("|")
+            for j in range(1, len(data_parts)):
+                parts = data_parts[j].split(":")
+                if len(parts) == 2:
+                    action_data_dict[parts[0]] = parts[1]
                 else:
-                    actionDataDict[parts[0]]= None
-            dataDict[dataParts[0]]=actionDataDict
-        return dataDict
+                    action_data_dict[parts[0]] = None
+            data_dict[data_parts[0]] = action_data_dict
+        return data_dict
