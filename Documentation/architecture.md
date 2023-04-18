@@ -87,6 +87,7 @@ title: The game
         ---
       }
       class main{
+        core Loop
         updates scenemanager and initializes loaders and handlers
       }
       class DrawPile{
