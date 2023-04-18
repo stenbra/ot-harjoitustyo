@@ -1,0 +1,21 @@
+Base-stats for cards
+##
+GUARD
+|SPD:0.5
+|DMG:0
+_
+ATTACK
+|SPD:1
+|DMG:2
+_
+GUARDBREAK
+|SPD:1.5
+|DMG:3
+_
+DODGE
+|SPD:0.25
+|DMG:0
+_
+POKE
+|SPD:0.75
+|DMG:1

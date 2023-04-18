@@ -1,0 +1,21 @@
+visual data for cards
+##
+GUARD
+|IMAGE:blank-card.png
+|TITLE:Guard
+_
+ATTACK
+|IMAGE:blank-card.png
+|TITLE:Attack
+_
+GUARDBREAK
+|IMAGE:blank-card.png
+|TITLE:Guard-break
+_
+DODGE
+|IMAGE:blank-card.png
+|TITLE:Dodge
+_
+POKE
+|IMAGE:blank-card.png
+|TITLE:Poke
