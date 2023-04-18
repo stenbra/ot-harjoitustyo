@@ -22,6 +22,9 @@ title: The game
       Game --> Scenemanager
       MainMenu --> Scenemanager
       Card --> Hand
+      CardPool --> Card
+      CardPool --> Player
+      Scenemanager --> main
 
 
       class DataLoader{
