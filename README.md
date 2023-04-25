@@ -17,3 +17,5 @@ The project is a pygame project. The game is a strategic card game where you try
 ` poetry run invoke test `
 ### Test-Coverage
 ` poetry run invoke coverage-report `
+### Lint
+` poetry run invoke lint `
