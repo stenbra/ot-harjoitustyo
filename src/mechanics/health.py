@@ -1,6 +1,8 @@
 from ui.health_bar import HealthBar
+
+
 class Health:
-    def __init__(self,death_event, max_health=7):
+    def __init__(self, death_event, max_health=7):
         self.max_health = max_health
         self.current_health = max_health
         self.death_event = death_event
@@ -10,6 +12,6 @@ class Health:
         self.current_health = self.current_health-damage_amount
         if self.current_health <= 0:
             self.die()
-    
+
     def die(self):
         self.death_event()

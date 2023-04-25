@@ -19,7 +19,8 @@ class DeckFunctionalityTests(unittest.TestCase):
 
     def test_draw_right_amout_remaining_in_deck(self):
         hand = self.deck.draw(3)
-        self.assertEqual(len(self.deck.deck_in_use), len(self.deck.card_pool)-3)
+        self.assertEqual(len(self.deck.deck_in_use),
+                         len(self.deck.card_pool)-3)
 
     def test_reshuffle_deck_when_enough_cards_left(self):
         hand = self.deck.draw(3)

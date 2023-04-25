@@ -20,9 +20,9 @@ def main():
     player = Player("player1")
     print(str(pool.card_stats['GUARD']))
     mainmenu = MainMenuScene("main-menu")
-    game_scene = Game("game",[player],pool,player.id,comparer)
-    sceneManager = Scenemanager([mainmenu,game_scene], screen)
-    sceneManager.set_active_scene("main-menu")
+    game_scene = Game("game", [player], pool, player.id, comparer)
+    scene_manager = Scenemanager([mainmenu, game_scene], screen)
+    scene_manager.set_active_scene("main-menu")
 
     while running:
         # poll for events
@@ -32,7 +32,7 @@ def main():
                 running = False
 
         screen.fill("purple")
-        sceneManager.update()
+        scene_manager.update()
         # RENDER YOUR GAME HERE
 
         # flip() the display to put your work on screen

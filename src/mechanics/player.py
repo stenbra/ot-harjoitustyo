@@ -1,6 +1,8 @@
 import random
+
+
 class Player:
-    def __init__(self,name=""):
+    def __init__(self, name=""):
         self.health = None
         self.advantage = 0
         self.deck = ["GUARD", "ATTACK", "GUARDBREAK", "DODGE", "POKE"]

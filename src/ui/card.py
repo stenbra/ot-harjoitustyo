@@ -2,7 +2,7 @@ import pygame
 
 
 class Card:
-    def __init__(self, scaleX, scaleY, onClick, cardPool, action,id):
+    def __init__(self, scaleX, scaleY, onClick, cardPool, action, id):
         self.img = cardPool.card_visuals[action]["IMAGE"]
         self.imgWidth = self.img.get_width()
         self.imgHeight = self.img.get_height()
@@ -46,4 +46,4 @@ class Card:
         self.image = pygame.transform.scale(
             self.img, (int(self.imgWidth*x), int(self.imgHeight*y)))
         self.rect = self.image.get_rect()
-        self.set_pos(self.center_x,self.center_y)
+        self.set_pos(self.center_x, self.center_y)
