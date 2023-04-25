@@ -4,4 +4,6 @@
 | 3.4 | 2 | Set up the base environment for testing and invoke commands |
 | 8.4 | 2 | Created sprites |
 | 18.4| 8 | Created the functionality for most of the core features, made a main menu, documentation, code-cleanup |
+| 20.4 | 2 | worked on turnhandling and hand ui|
+| 25.4 | 8 | UI work and the main gamescene has been added, also some documentation|
 

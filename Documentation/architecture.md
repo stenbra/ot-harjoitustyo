@@ -101,3 +101,27 @@ title: The game
         select_card()
       }
 ```
+
+## Main funtions
+
+### Turn Handling
+
+#### Start of turn and card selection phase
+```mermaid
+sequenceDiagram
+  participant Turnhandler
+  participant Card
+  participant Hand
+  participant Deck
+  Turnhandler->>Hand: hands.new_hand() 
+  Hand->>Deck: draw()
+  Deck-->>Hand: returns list of cards
+  Hand->>Card: initialize Card() for the hand
+  Card->>Hand: "click card" hand.set_selected()
+  Hand->>Hand: self.update_marker_positions()
+  Game->>Hand: clicked "LOCK IN" 
+  Hand->>Hand: play_selected()
+  Hand->> Turnhandler: turn_handler.lock_in_cards()
+  Turnhandler->>Turnhandler: if both players have locked their cards go to battle_phase
+
+```
