@@ -19,3 +19,7 @@ _
 POKE
 |SPD:0.75
 |DMG:1
+_
+NONE
+|SPD:10
+|DMG:0

@@ -18,6 +18,7 @@ class Scenemanager:
             return
         self.scenes[scene.get_scene_name()] = scene
         scene.scenemanager = self
+        print("Added scene: "+scene.get_scene_name())
 
     def set_active_scene(self, scene_name):
         if scene_name in self.scenes:

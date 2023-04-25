@@ -1,7 +1,9 @@
 import pygame
 import mechanics.card_actions as actions
 import mechanics.card_logic as logic
+from mechanics.player import Player
 from main_menu import MainMenuScene
+from game import Game
 from mechanics.scenemanager import Scenemanager
 
 
@@ -13,10 +15,13 @@ def main():
     running = True
 
     reader = actions.ActionLoader()
-    pool = logic.CardPool(reader)
+    pool = logic.CardDataPool(reader)
+    comparer = logic.CardComparer(reader)
+    player = Player("player1")
     print(str(pool.card_stats['GUARD']))
     mainmenu = MainMenuScene("main-menu")
-    sceneManager = Scenemanager([mainmenu], screen)
+    game_scene = Game("game",[player],pool,player.id,comparer)
+    sceneManager = Scenemanager([mainmenu,game_scene], screen)
     sceneManager.set_active_scene("main-menu")
 
     while running:
@@ -26,7 +31,6 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        # fill the screen with a color to wipe away anything from last frame
         screen.fill("purple")
         sceneManager.update()
         # RENDER YOUR GAME HERE

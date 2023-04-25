@@ -32,3 +32,7 @@ class MenuButton:
     def update(self, surface):
         self.render(surface)
         self.click_check()
+    
+    def set_pos(self, x, y):
+        self.textRect.center = (x, y)
+        self.rect.center = (x, y)
