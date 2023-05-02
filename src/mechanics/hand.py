@@ -29,7 +29,7 @@ class Hand:
             return
         for i in range(len(self.selected_cards)):
             if id in self.selected_cards[i]:
-                self.currentHand[id].set_scale(1, 1)
+                self.currentHand[id].set_scale(1.2,1.2)
                 deselected = self.selected_cards.pop(i)
                 print("Deselected: " + deselected[id])
                 self.update_marker_positions()
@@ -41,7 +41,7 @@ class Hand:
         if len(self.selected_cards) > 2:
             deselected = self.selected_cards.pop(0)
             for i in deselected:
-                self.currentHand[i].set_scale(1, 1)
+                self.currentHand[i].set_scale(1.2,1.2)
                 print("Deselected: " + deselected[i])
         self.update_marker_positions()
         print("Selected: " + action)
@@ -59,9 +59,10 @@ class Hand:
         id = 0
         drawn_cards = self.draw_pile.draw(self.draw_amount)
         for i in drawn_cards:
-            new_card = Card(1, 1, self.set_selected, self.cardpool, i, id)
+            new_card = Card(self.set_selected, self.cardpool, i, id,self.player)
             new_card.set_pos(
                 self.card_positions[id][0], self.card_positions[id][1])
+            new_card.set_scale(1.2,1.2)
             self.currentHand[id] = new_card
             id += 1
         self.locked = False

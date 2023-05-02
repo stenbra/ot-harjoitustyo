@@ -19,46 +19,22 @@ class CardComparer:
 
     def compare_cards(self, card1, card2, player1, player2):
         faster_card = self.get_faster_card(
-            card1, card2, player1.get_advantage(), player2.get_advantage())
-        print(card1.action, "vs", card2.action)
-        print(str(player1.name)+" ADV: " + str(player1.get_advantage()))
-        print(str(player2.name)+" ADV: " + str(player2.get_advantage()))
+            card1, card2, player1.get_comp_advantage(), player2.get_comp_advantage())
+        player_data = {}
         if faster_card is None:
-            return False
-        if faster_card == 0:
+            player_data[player1] = [card1.action,0,0]
+            player_data[player2] = [card2.action,0,0]
+        elif faster_card == 0:
             action_info = self.interaction_dict[card1.action][card2.action]
-            player1.set_advantage(action_info[0])
-            player1.health.take_damage(action_info[1]*float(card2.damage))
-            player2.set_advantage(action_info[2])
-            player2.health.take_damage(action_info[3]*float(card1.damage))
+                
+            player_data[player1] = [card1.action,action_info[0],action_info[1]*float(card2.damage)]
+            player_data[player2] = [card2.action,action_info[2],action_info[3]*float(card1.damage)]
 
-            print(card1.action+" was faster")
-            print("Player: " + str(player1.name) +
-                  " increased advantage by " + str(action_info[0]))
-            print("Player: " + str(player1.name) +
-                  " took " + str(action_info[1]) + " dmg")
-            print("Player: " + str(player2.name) +
-                  " increased advantage by " + str(action_info[2]))
-            print("Player: " + str(player2.name) +
-                  " took " + str(action_info[3]) + " dmg")
-
-        if faster_card == 1:
-            action_info = self.interaction_dict[card2.action][card1.action]
-            player2.set_advantage(action_info[0])
-            player2.health.take_damage(action_info[1]*float(card2.damage))
-            player1.set_advantage(action_info[2])
-            player1.health.take_damage(action_info[3]*float(card1.damage))
-
-            print(card2.action+" was faster")
-            print("Player: " + str(player2.name) +
-                  " increased advantage by " + str(action_info[0]))
-            print("Player: " + str(player2.name) +
-                  " took " + str(action_info[1]) + " dmg")
-            print("Player: " + str(player1.name) +
-                  " increased advantage by " + str(action_info[2]))
-            print("Player: " + str(player1.name) +
-                  " took " + str(action_info[3]) + " dmg")
-        return True
+        elif faster_card == 1:
+            action_info = self.interaction_dict[card2.action][card1.action]        
+            player_data[player1] = [card1.action,action_info[2],action_info[3]*float(card2.damage)]
+            player_data[player2] = [card2.action,action_info[0],action_info[1]*float(card1.damage)]
+        return player_data
 
     def get_faster_card(self, card1, card2, p1a, p2a):
         if card1.speed-p1a < card2.speed-p2a:

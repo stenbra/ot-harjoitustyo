@@ -5,6 +5,7 @@ from mechanics.player import Player
 from main_menu import MainMenuScene
 from game import Game
 from mechanics.scenemanager import Scenemanager
+from mechanics import animations
 
 
 def main():
@@ -17,10 +18,10 @@ def main():
     reader = actions.ActionLoader()
     pool = logic.CardDataPool(reader)
     comparer = logic.CardComparer(reader)
+    animation_handler = animations.AnimationHandler(screen)
     player = Player("player1")
-    print(str(pool.card_stats['GUARD']))
     mainmenu = MainMenuScene("main-menu")
-    game_scene = Game("game", [player], pool, player.id, comparer)
+    game_scene = Game("game", [player], pool, player.id, comparer, animation_handler)
     scene_manager = Scenemanager([mainmenu, game_scene], screen)
     scene_manager.set_active_scene("main-menu")
 

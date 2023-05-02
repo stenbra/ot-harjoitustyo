@@ -19,3 +19,7 @@ _
 POKE
 |IMAGE:blank-card.png
 |TITLE:Poke
+_
+NONE
+|IMAGE:blank-card.png
+|TITLE:None

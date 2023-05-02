@@ -18,9 +18,9 @@ class MainMenuScene(Scene):
         self.start_button = MenuButton(
             640, 280, quit_img, 8, 2, self.start, start_text)
 
-        title_font = pygame.font.Font('freesansbold.ttf', 56)
+        title_font = pygame.font.Font('freesansbold.ttf', 84)
         self.title = title_font.render(
-            "LE GAME", True, (0, 0, 0), (255, 255, 0))
+            "VERY EPIC GAME-TITLE", True, (0, 0, 0), (255, 255, 0))
         self.title_rect = self.title.get_rect()
         self.title_rect.center = (640, 100)
 
