@@ -9,7 +9,8 @@ class MainMenuScene(Scene):
 
         button_font = pygame.font.Font('freesansbold.ttf', 32)
         quit_text = button_font.render("QUIT", True, (0, 0, 0))
-        start_text = button_font.render("START", True, (0, 0, 0))
+        continue_text = button_font.render("CONTINUE", True, (0, 0, 0))
+        start_text = button_font.render("NEW GAME", True, (0, 0, 0))
         quit_img = pygame.image.load(
             "src/gamedata/sprites/button-base.png").convert_alpha()
 
@@ -17,6 +18,8 @@ class MainMenuScene(Scene):
             640, 360, quit_img, 8, 2, self.end, quit_text)
         self.start_button = MenuButton(
             640, 280, quit_img, 8, 2, self.start, start_text)
+        self.continue_button = MenuButton(
+            640, 280, quit_img, 8, 2, self.continue_game, continue_text)
 
         title_font = pygame.font.Font('freesansbold.ttf', 84)
         self.title = title_font.render(
@@ -26,13 +29,28 @@ class MainMenuScene(Scene):
 
     def update(self):
         self.scenemanager.screen.fill("red")
+        self.scenemanager.screen.blit(self.title, self.title_rect)
+        if self.scenemanager.get_scene_by_name("game").turn_handler.turn >0:
+            self.continue_button.update(self.scenemanager.screen)
+            self.start_button.set_pos(640,360)
+            self.quit_button.set_pos(640,440)
+            self.start_button.update(self.scenemanager.screen)
+            self.quit_button.update(self.scenemanager.screen)
+            return
+        self.start_button.set_pos(640,280)
+        self.quit_button.set_pos(640,360)
         self.start_button.update(self.scenemanager.screen)
         self.quit_button.update(self.scenemanager.screen)
-        self.scenemanager.screen.blit(self.title, self.title_rect)
+
 
     def end(self):
         pygame.quit()
+        print("out")
         quit()
+
+    def continue_game(self):
+        self.scenemanager.set_active_scene("game")
 
     def start(self):
         self.scenemanager.set_active_scene("game")
+        self.scenemanager.get_scene_by_name("game").reset_scene()

@@ -19,6 +19,14 @@ class TurnHandler:
         self.combat_data = None
         self.turn =0
 
+    def reset_turnhandler(self):
+        self.hands = {}
+        self.played_cards = []
+        self.state = 3
+        self.setup_players()
+        self.combat_data = None
+        self.turn =0
+
     def lock_in_cards(self, player, cards):
         player_cards = {}
         player_cards[player] = cards
@@ -39,7 +47,6 @@ class TurnHandler:
         for i in self.hands:
             self.hands[i].new_hand()
         self.combat_data = None
-        print("ahaaa")
         self.turn = self.turn+1
         animation = backround_box_move(0,2,text="ROUND "+str(self.turn))
         self.animation_handler.add_to_animation_queue(animation)

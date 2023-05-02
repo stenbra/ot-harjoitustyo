@@ -15,3 +15,9 @@
 - card ui added (different card art not yet added)
 - turn handling working (will be improved in the next weeks changes)
 - at the moment the interation info is displayed in the console
+
+## Week 6
+- Added an animation system which alowes the game to queue and play animations 
+- implemented animations for start of round and combat phase comparisons
+- button highlight when hovering
+- main menu has now continue option if you oped main menu from the game scene

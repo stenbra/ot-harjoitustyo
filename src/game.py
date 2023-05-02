@@ -39,6 +39,9 @@ class Game(Scene):
             self.players, cardpool, card_hand_positions, self.card_comparer, animation_handler)
         self.local_player_id = local_player_id
 
+    def reset_scene(self):
+        self.turn_handler.reset_turnhandler()
+
     def update(self):
         self.scenemanager.screen.fill((255, 255, 245))
         self.quit_button.update(self.scenemanager.screen)

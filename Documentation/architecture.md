@@ -1,3 +1,7 @@
+## Structure
+
+![](./images/structure.png)
+
 ## Class Structure
 ```mermaid
 ---

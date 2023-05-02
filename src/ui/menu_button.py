@@ -17,7 +17,9 @@ class MenuButton:
 
     def click_check(self):
         mousePos = pygame.mouse.get_pos()
+        self.image.set_alpha(255)
         if self.rect.collidepoint(mousePos):
+            self.image.set_alpha(128)
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 if self.onclick:
                     self.onclick()
@@ -30,8 +32,9 @@ class MenuButton:
         surface.blit(self.text, (self.textRect.x, self.textRect.y))
 
     def update(self, surface):
-        self.render(surface)
         self.click_check()
+        self.render(surface)
+        
 
     def set_pos(self, x, y):
         self.textRect.center = (x, y)
