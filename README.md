@@ -11,6 +11,7 @@ The project is a pygame project. The game is a strategic card game where you try
 [Architecture](https://github.com/stenbra/ot-harjoitustyo/blob/master/Documentation/architecture.md)
 ## Releases
 [Release 1](https://github.com/stenbra/ot-harjoitustyo/releases/tag/Viikko5)
+[Release 2](https://github.com/stenbra/ot-harjoitustyo/releases/tag/Viikko6)
 ## Commands
 ### install dependencies
 ` poetry install `
