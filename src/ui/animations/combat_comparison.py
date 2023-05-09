@@ -1,12 +1,37 @@
 import pygame
+import random
 from mechanics.animations import Animation
 class backround_box_move(Animation):
     def __init__(self, start=0, duration=1, sub_animations=[], on_animation_end=[],text=""):
         super().__init__(start, duration, sub_animations, on_animation_end)
         self.x_pos = 0
         self.y_pos = 0
-        self.back_ground_color = (255,0,0)
-        self.color = (255,235,10)
+        self.back_ground_color = (230,50,30)
+        self.color = (230,170,10)
+        self.text= text
+
+    def setup(self):
+        self.sub_animations=[]
+        self.x_pos = 1280
+        self.y_pos = 250
+        round_text_appear =text_appear(0.3,0.75,text=self.text,shadow=True)
+        round_text_appear.play()
+        self.sub_animations.append(round_text_appear)
+
+    def render(self, screen):
+        pygame.draw.rect(screen, self.back_ground_color,
+                         (self.x_pos+100, self.y_pos, 4000, 220))
+        pygame.draw.rect(screen, self.color,
+                         (self.x_pos, self.y_pos+35, 4200, 150))
+        self.x_pos -=3
+
+class backround_box_move_random_color(Animation):
+    def __init__(self, start=0, duration=1, sub_animations=[], on_animation_end=[],text="",rgb_lower=60,rgb_upper=245):
+        super().__init__(start, duration, sub_animations, on_animation_end)
+        self.x_pos = 0
+        self.y_pos = 0
+        self.back_ground_color = (random.randint(rgb_lower,rgb_upper),random.randint(rgb_lower,rgb_upper),random.randint(rgb_lower,rgb_upper))
+        self.color = (random.randint(rgb_lower,rgb_upper),random.randint(rgb_lower,rgb_upper),random.randint(rgb_lower,rgb_upper))
         self.text= text
 
     def setup(self):
@@ -78,12 +103,13 @@ class combat_time(Animation):
         self.card1_img = cardPool.card_visuals[data_dict[players[0]][0]]["IMAGE"]
         self.card2_img = cardPool.card_visuals[data_dict[players[1]][0]]["IMAGE"]
         
-        # self.img = cardPool.card_visuals[card1.action]["IMAGE"]
-        # self.image = pygame.transform.scale(
-        #     self.img, (int(self.imgWidth), int(self.imgHeight)))
-        # self.rect = self.image.get_rect()
         self.card1_title_text = str(data_dict[players[0]][0])
         self.card2_title_text = str(data_dict[players[1]][0])
+        self.faster=None
+        if data_dict["FASTER"] == players[0]:
+            self.faster = 1
+        if data_dict["FASTER"] == players[1]:
+            self.faster = 2
 
 
 
@@ -91,11 +117,15 @@ class combat_time(Animation):
         self.sub_animations=[]
         self.x_pos = 1280
         self.y_pos = 200
-        p1_name_text_appear =text_appear(0.3,5.6,text=self.player1_name,x_pos=140,fontsize=28)
+        p1_name_font_size = max(min(28,int(28*(14/len(self.player1_name)))),12)
+        p2_name_font_size = max(min(28,int(28*(14/len(self.player2_name)))),12)
+        print(p1_name_font_size)
+        print(p2_name_font_size)
+        p1_name_text_appear =text_appear(0.4,5.7,text=self.player1_name,x_pos=140,fontsize=p1_name_font_size)
         p1_name_text_appear.play()
-        p2_name_text_appear =text_appear(0.9,5,text=self.player2_name,x_pos=1140,fontsize=28)
+        p2_name_text_appear =text_appear(0.9,5,text=self.player2_name,x_pos=1140,fontsize=p2_name_font_size)
         p2_name_text_appear.play()
-        p1_adv_text_appear =text_appear(0.3,5.6,text=self.player1_advantage,x_pos=80,y_pos=400,fontsize=15)
+        p1_adv_text_appear =text_appear(0.4,5.7,text=self.player1_advantage,x_pos=80,y_pos=400,fontsize=15)
         p1_adv_text_appear.play()
         p2_adv_text_appear =text_appear(0.9,5,text=self.player2_advantage,x_pos=1200,y_pos=400,fontsize=15)
         p2_adv_text_appear.play()
@@ -109,6 +139,7 @@ class combat_time(Animation):
         p1_card_text_appear.play()
         p2_card_text_appear =text_appear(start=1,duration=4.9,text=self.card2_title_text,x_pos=830,y_pos=470,fontsize=24)
         p2_card_text_appear.play()
+        
         self.sub_animations.append(vs_text_appear)
         self.sub_animations.append(p1_name_text_appear)
         self.sub_animations.append(p2_name_text_appear)
@@ -118,6 +149,14 @@ class combat_time(Animation):
         self.sub_animations.append(card2_image_appear)
         self.sub_animations.append(p1_card_text_appear)
         self.sub_animations.append(p2_card_text_appear)
+        if self.faster ==1:
+            faster_text_appear =text_appear(1.2,4.7,text="FASTER >>",x_pos=300,y_pos=280,fontsize=20)
+            faster_text_appear.play()
+            self.sub_animations.append(faster_text_appear)
+        if self.faster ==2:
+            faster_text_appear =text_appear(1.2,4.7,text="<< FASTER",x_pos=980,y_pos=280,fontsize=20)
+            faster_text_appear.play()
+            self.sub_animations.append(faster_text_appear)
         
 
 

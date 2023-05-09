@@ -7,22 +7,33 @@ class AnimationHandler:
         self.animation_queue=[]
         self.playing_animation = None
         self.clicked = False
+        self.started_this_frame = False
 
     def play_next_from_queue(self):
         if self.playing_animation is not None:
             self.playing_animation.stop()
             self.playing_animation = None
-
         if len(self.animation_queue) == 0:
             return
         next_animation = self.animation_queue.pop(0)
-        print(self.animation_queue)
-        print(next_animation)
         if not next_animation:
             return
         self.playing_animation = next_animation
         self.playing_animation.play()
+        self.started_this_frame = True
         self.clicked = True
+
+    def force_animation(self, animation):
+        self.stop_and_empty_queue()
+        if not animation:
+            return
+        self.add_to_animation_queue(animation)
+    
+    def stop_and_empty_queue(self):
+        self.animation_queue = []
+        if self.playing_animation is not None:
+            self.playing_animation.stop()
+        self.playing_animation = None
 
     def update(self):
         if not self.is_running():
@@ -30,6 +41,10 @@ class AnimationHandler:
                 return
             self.play_next_from_queue()
         over = self.playing_animation.update(self.screen)
+        
+        if self.started_this_frame:
+            self.started_this_frame = False
+            return
         if over or pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 self.play_next_from_queue()
                 self.clicked = True
@@ -58,8 +73,10 @@ class Animation:
         self.stop_time=0
         self.on_animation_end = on_animation_end
         self.end_call = False
+
     def setup(self):
         pass
+
     def play(self):
         self.start_time = time.time() + self.start
         self.stop_time = self.start_time + self.duration
@@ -67,6 +84,7 @@ class Animation:
         for i in self.sub_animations:
             i.play()
         self.setup()
+
     def stop(self):
         self.timer = self.duration +1
         if len(list(self.on_animation_end))==0:
@@ -77,8 +95,10 @@ class Animation:
             self.end_call = True
             for function in self.on_animation_end:
                 function.call()
+
     def render(self,screen):
         pass
+
     def update(self,screen):
         timer= time.time()
         if timer< self.start_time:

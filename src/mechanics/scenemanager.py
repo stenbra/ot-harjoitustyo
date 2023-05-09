@@ -9,8 +9,10 @@ class Scenemanager:
             i.scenemanager = self
         self.active_scene = None
         self.screen = screen
+        self.events =[]
 
-    def update(self):
+    def update(self,events=[]):
+        self.events = events
         self.active_scene.update()
 
     def add_scene(self, scene: Scene):

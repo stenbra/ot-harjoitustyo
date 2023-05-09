@@ -52,5 +52,5 @@ class MainMenuScene(Scene):
         self.scenemanager.set_active_scene("game")
 
     def start(self):
-        self.scenemanager.set_active_scene("game")
-        self.scenemanager.get_scene_by_name("game").reset_scene()
+        self.scenemanager.set_active_scene("name")
+        self.scenemanager.get_scene_by_name("name").reset_scene()

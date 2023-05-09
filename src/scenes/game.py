@@ -2,6 +2,7 @@ import pygame
 from mechanics.scene import Scene
 from mechanics.turn_handler import TurnHandler
 from mechanics.player import Player
+from mechanics.scoreboard import the_scoreboard
 
 from ui.menu_button import MenuButton
 
@@ -30,18 +31,19 @@ class Game(Scene):
 
         card_hand_positions = [[400, 550], [500, 550], [
             600, 550], [700, 550], [800, 550], [900, 550]]
-
-        self.players = players
-        if len(self.players) == 1:
-            self.players.append(Player("CO-Mput_ER"))
+        
         self.card_comparer = card_comparer
         self.turn_handler = TurnHandler(
-            self.players, cardpool, card_hand_positions, self.card_comparer, animation_handler)
+            players, cardpool, card_hand_positions, self.card_comparer, animation_handler,self.game_over)
         self.local_player_id = local_player_id
 
     def reset_scene(self):
         self.turn_handler.reset_turnhandler()
 
+    def set_player_name_in_pve(self,name):
+        for i in self.turn_handler.players:
+            if i.id == self.local_player_id:
+                i.name = name
     def update(self):
         self.scenemanager.screen.fill((255, 255, 245))
         self.quit_button.update(self.scenemanager.screen)
@@ -64,8 +66,17 @@ class Game(Scene):
     def start(self):
         self.turn_handler.hands[self.local_player_id].play_selected()
 
+    def game_over(self):
+        name = ""
+        for i in self.turn_handler.players:
+            if i.id == self.local_player_id:
+                name = i.name
+        the_scoreboard.update_scoreboard(name,self.turn_handler.score)
+        self.reset_scene()
+        self.scenemanager.set_active_scene("main-menu")
+
     def update_health(self):
-        for i in self.players:
+        for i in self.turn_handler.players:
             if i.id == self.local_player_id:
                 i.health.health_bar.update_health_bar(
                     [30, 650], 300, 20, self.scenemanager.screen)

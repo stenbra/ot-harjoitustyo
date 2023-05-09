@@ -3,11 +3,12 @@ from mechanics.call_back import call_back
 
 
 class Health:
-    def __init__(self, death_event, max_health=7):
+    def __init__(self, player , death_event, max_health=7):
         self.max_health = max_health
         self.current_health = max_health
         self.death_event = death_event
         self.health_bar = HealthBar(self)
+        self.player = player
 
     def take_damage(self, damage_amount):
         if type(damage_amount) is tuple:
@@ -22,4 +23,4 @@ class Health:
         return call_back(self.take_damage,damage_amount)
 
     def die(self):
-        self.death_event()
+        self.death_event(self.player)

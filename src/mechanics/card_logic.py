@@ -24,16 +24,19 @@ class CardComparer:
         if faster_card is None:
             player_data[player1] = [card1.action,0,0]
             player_data[player2] = [card2.action,0,0]
+            player_data["FASTER"] = None
         elif faster_card == 0:
             action_info = self.interaction_dict[card1.action][card2.action]
                 
             player_data[player1] = [card1.action,action_info[0],action_info[1]*float(card2.damage)]
             player_data[player2] = [card2.action,action_info[2],action_info[3]*float(card1.damage)]
+            player_data["FASTER"] = player1
 
         elif faster_card == 1:
             action_info = self.interaction_dict[card2.action][card1.action]        
             player_data[player1] = [card1.action,action_info[2],action_info[3]*float(card2.damage)]
             player_data[player2] = [card2.action,action_info[0],action_info[1]*float(card1.damage)]
+            player_data["FASTER"] = player2
         return player_data
 
     def get_faster_card(self, card1, card2, p1a, p2a):

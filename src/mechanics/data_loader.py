@@ -1,11 +1,10 @@
 class DataLoader:
     @staticmethod
     def load_data_from_file(file):
-        open_file = open(file, "r")
-        file_data = open_file.read()
-        open_file.close()
-        data = DataLoader.parse_data(file_data)
-        return data
+        with open(file,"r") as open_file:
+            file_data = open_file.read()
+            data = DataLoader.parse_data(file_data)
+            return data
 
     @staticmethod
     def parse_data(data):

@@ -2,8 +2,9 @@ import random
 from mechanics.call_back import call_back
 
 class Player:
-    def __init__(self, name=""):
+    def __init__(self, name="", is_bot = False):
         self.health = None
+        self.is_bot =is_bot
         self.advantage = 0 #only for visuals
         self.deck = ["GUARD", "ATTACK", "GUARDBREAK", "DODGE", "POKE","GUARD", "ATTACK", "GUARDBREAK", "DODGE", "POKE"]
         self.id = random.random()*10000
