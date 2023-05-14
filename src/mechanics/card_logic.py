@@ -4,6 +4,13 @@ import pygame
 
 
 class CardStats:
+    """simple class that holds three attributes
+    
+    Attributes:
+        speed: the card speed
+        action: the card action
+        damage: the card damage
+    """
     def __init__(self, speed, damage, action):
         self.speed = speed
         self.action = action
@@ -14,10 +21,27 @@ class CardStats:
 
 
 class CardComparer:
+    """ class that compares cards using data loaded from a card_interaction file
+
+    Attributes:
+        interaction_dict:The dictionar containing the interaction data
+
+    """
     def __init__(self, action_loader):
         self.interaction_dict = action_loader.load_action_interactions()
 
     def compare_cards(self, card1, card2, player1, player2):
+        """uses interaction_dict ad get_faster_card() to determine what the cards do (dmg/adv)
+
+        Args:
+            card1: a cardstats object containing data of the card that player 1 played
+            card2: a cardstats object containing data of the card that player 2 played
+            player1: player 1 used to get the advantage and to indext the dicionary
+            player2: player 2 used to get the advantage and to indext the dicionary
+
+        Returns: A dict of where the players are the keys and the values are the damage taken and advantage gain for the players
+            there is also a key for which card was faster
+        """
         faster_card = self.get_faster_card(
             card1, card2, player1.get_comp_advantage(), player2.get_comp_advantage())
         player_data = {}
@@ -40,6 +64,14 @@ class CardComparer:
         return player_data
 
     def get_faster_card(self, card1, card2, p1a, p2a):
+        """checks which card is played faster
+        Args;
+            card1: a cardstats object containing data of the card
+            card2: a cardstats object containing data of the card
+            p1a: the advantage of player1
+            p2a: the advantage of player2
+        Returns: 0 if card1 is faster,1 if card 2 is faster and None if they have the same speed
+        """
         if card1.speed-p1a < card2.speed-p2a:
             return 0
         if card1.speed-p1a > card2.speed-p2a:
@@ -52,6 +84,13 @@ class CardComparer:
 
 
 class CardDataPool:
+    """class, that contains the data for all card "prefabs", 
+    it also has a function that allows the computer to get random cards to play
+    
+    Attributes:
+        card_stats: contains all the stats for the cards can be accessed by the card name
+        card_visuals: contains title and image for the cards can be accessed by the card name
+    """
     def __init__(self, action_loader):
         self.card_stats = {}
         self.create_cards(action_loader.load_action_base_stats())
@@ -59,11 +98,21 @@ class CardDataPool:
         self.set_visual_recources(action_loader.load_action_visuals())
 
     def create_cards(self, card_data):
+        """Generates the card stat dictionary based on the card data that it recieves
+
+        Args:
+            card_data: the data dictionary containing all the base stats for cards
+        """
         for i in card_data:
             self.card_stats[i] = CardStats(
                 float(card_data[i]["SPD"]), float(card_data[i]["DMG"]), str(i))
 
     def set_visual_recources(self, visual_data):
+        """Generates the card visuals and puts them in a dictionary 
+
+        Args:
+            visual_data: the data dictionary containing the visual data for the cards
+        """
         for i in visual_data:
             visual_sub_dict = {}
             card_text_font = pygame.font.Font('freesansbold.ttf', 14)
@@ -77,6 +126,12 @@ class CardDataPool:
             self.card_visuals[i] = visual_sub_dict
 
     def get_actions_for_computer_opponent(self, action_amount=2):
+        """gets random card actions from card_stats
+
+        Args:
+            action_amount: amount of actions to get
+        Returns: a list of card actions
+        """
         dict_keys = list(self.card_stats)
         actions = []
         for i in range(action_amount):

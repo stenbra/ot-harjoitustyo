@@ -8,4 +8,9 @@
 | 25.4 | 8 | UI work and the main gamescene has been added, also some documentation|
 | 28.4| 3 | worked on a system for animations|
 | 2.5 | 4 | finished animation system, worked on sprites and some fixes for the turn handling|
-
+| 4.5 | 4 | added a lot of animations |
+| 10.5| 6 | added scoreboard and scenes for entering name and the score board|
+| 12.5| 4 | worked on animations|
+| 13.5| 7 | worked on implementing animations|
+|14.5| 14 | worked on audio, documentaion, animation fixes, created images for the rules scene|
+|total| 67||

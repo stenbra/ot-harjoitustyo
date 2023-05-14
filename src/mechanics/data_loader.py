@@ -1,6 +1,12 @@
 class DataLoader:
+    """class that loads and parses specific types of txt files
+    """
     @staticmethod
     def load_data_from_file(file):
+        """opens a file calls a function to parse its contents
+
+        Returns: the parsed data of the file
+        """
         with open(file,"r") as open_file:
             file_data = open_file.read()
             data = DataLoader.parse_data(file_data)
@@ -8,6 +14,10 @@ class DataLoader:
 
     @staticmethod
     def parse_data(data):
+        """Parses certian fromated strings
+        
+        Returns: a dictionary based on the string
+        """
         data_dict = {}
         body = data.split("##")[1].replace("\n", "")
         actions = body.split("_")

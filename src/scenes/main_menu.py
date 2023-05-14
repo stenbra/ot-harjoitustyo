@@ -29,7 +29,7 @@ class MainMenuScene(Scene):
 
         title_font = pygame.font.Font('freesansbold.ttf', 84)
         self.title = title_font.render(
-            "VERY EPIC GAME-TITLE", True, (0, 0, 0), (255, 255, 0))
+            "THE PROVING GROUNDS", True, (0, 0, 0), (255, 255, 0))
         self.title_rect = self.title.get_rect()
         self.title_rect.center = (640, 100)
 
@@ -58,20 +58,25 @@ class MainMenuScene(Scene):
 
 
     def end(self):
+        """quits the application"""
         pygame.quit()
         quit()
 
     def continue_game(self):
+        """changes the scene to game"""
         self.scenemanager.set_active_scene("game")
 
     def to_score(self):
+        """changes the scene to score"""
         self.scenemanager.set_active_scene("score")
     
     def to_rules(self):
+        """changes the scene to rules"""
         self.scenemanager.set_active_scene("rules")
 
 
     def start(self):
+        """changes the scene to name and selects a random anouncer"""
         audio_resource.set_random_anouncer()
         self.scenemanager.set_active_scene("name")
         self.scenemanager.get_scene_by_name("name").reset_scene()

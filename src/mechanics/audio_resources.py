@@ -1,9 +1,20 @@
 import pygame
 import random
 class Audio_resource:
+    """singleton which contains all audiofiles for easy access across the project
+
+    Attrubutes:
+        announcers: list of dictionaries containing all voicelines for announcers
+        active_anouncer_index: The index of which anouncer that is currently in use in the announcers list
+        url: relative path to the audiofiles
+        button_sound: the universal buttonsound that is used through out the project
+        clinks: weapon clink -sound list
+    """
     def __init__(self) -> None:
         self.active_anouncer_index = 0
     def Initialize(self,url="src/gamedata/audio/"):
+        """loads all the sounds and puts them in a easy to find structure, also initializes the menu music
+        """
         self.url = url
         self.anouncers = []
         announcer_death=[]
@@ -71,15 +82,21 @@ class Audio_resource:
         pygame.mixer.music.pause()
 
     def set_random_anouncer(self):
+        """randomly configuers the active_anouncer_index to be one of the announcers in the anouncers lis
+        """
         self.active_anouncer_index = random.randint(0,len(self.anouncers)-1)
 
     def play_anouncer_sound(self,sound):
+       """plays a random sound from list in the dictionary<string,List[]> that is at the current index of the anouncers list
+       """
        if pygame.mixer.Channel(0).get_busy() == True:
            return
        soundlist= self.anouncers[self.active_anouncer_index][sound]
        soundlist[(random.randint(0,len(soundlist)-1))].play()
 
     def play_clink(self):
+        """plays a random sound from the clinks list
+        """
         self.clinks[(random.randint(0,len(self.clinks)-1))].play()
 
 

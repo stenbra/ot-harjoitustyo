@@ -17,7 +17,14 @@
 - at the moment the interation info is displayed in the console
 
 ## Week 6
-- Added an animation system which alowes the game to queue and play animations 
+- Added an animation system which alows the game to queue and play animations 
 - implemented animations for start of round and combat phase comparisons
 - button highlight when hovering
 - main menu has now continue option if you oped main menu from the game scene
+
+## Week 7
+- Added a score board
+- Added sounds and a announcer
+- Added combat animations
+- Added a scene for players to enter their name
+- Added a scene with the game rules

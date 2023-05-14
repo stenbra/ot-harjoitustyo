@@ -40,7 +40,9 @@ class EnterName(Scene):
         self.name_empty_check = False
 
     def text_handling(self):
-         for event in self.scenemanager.events:
+        """ Handles the keyboard input for the name field also updates the text to render
+        """
+        for event in self.scenemanager.events:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
                     self.challenger_name = self.challenger_name[:-1]
@@ -65,6 +67,7 @@ class EnterName(Scene):
         self.quit_button.update(self.scenemanager.screen)
         
     def start(self):
+        """changes scene to game if a name has ben entered"""
         if self.challenger_name =="":
             self.name_empty_check = True
             return
@@ -73,11 +76,13 @@ class EnterName(Scene):
         self.scenemanager.get_scene_by_name("game").set_player_name_in_pve(self.challenger_name)
 
     def reset_scene(self):
+        """resets the scene"""
         self.name_empty_check = False
         self.challenger_name=""
         self.txt_surface = self.font.render(self.challenger_name, True, (0, 0, 0))
     
     def to_menu(self):
+        """changes scene to main-menu"""
         self.scenemanager.set_active_scene("main-menu")
 
     def on_activate(self):

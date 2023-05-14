@@ -18,7 +18,6 @@ class character_animation(Animation):
         self.clock=pygame.time.Clock()
         self.current_frame =0
         self.dt=0
-        print("call")
     
     def render_image(self,screen,img,x=640,y=360,scale=1):
         imgWidth = img.get_width()
