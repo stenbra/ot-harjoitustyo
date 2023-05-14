@@ -1,6 +1,6 @@
 import pygame
 import mechanics.card_actions as actions
-import mechanics.card_logic as logic
+from mechanics.card_logic import CardComparer,CardDataPool
 from mechanics.player import Player
 from scenes.main_menu import MainMenuScene
 from scenes.game import Game
@@ -10,6 +10,7 @@ from scenes.rules import RulesScene
 from mechanics.scenemanager import Scenemanager
 from mechanics import animations
 from mechanics.scoreboard import the_scoreboard
+from mechanics.audio_resources import audio_resource
 from ui.animations.character_anim_rescource import anim_resource 
 
 def main():
@@ -21,16 +22,17 @@ def main():
     running = True
 
     anim_resource.Initialize()
+    audio_resource.Initialize()
     reader = actions.ActionLoader()
-    pool = logic.CardDataPool(reader)
-    comparer = logic.CardComparer(reader)
+    pool = CardDataPool(reader)
+    comparer = CardComparer(reader)
     animation_handler = animations.AnimationHandler(screen)
     player = Player("player1")
     mainmenu = MainMenuScene("main-menu")
     name_scene = EnterName("name")
     game_scene = Game("game", [player], pool, player.id, comparer, animation_handler)
     score_scene = ScoreboardScene("score")
-    rules_scene = RulesScene("rules",pool)
+    rules_scene = RulesScene("rules")
     scene_manager = Scenemanager([mainmenu, game_scene,name_scene,score_scene,rules_scene], screen)
     scene_manager.set_active_scene("main-menu")
     while running:

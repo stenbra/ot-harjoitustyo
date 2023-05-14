@@ -1,5 +1,5 @@
 import pygame
-
+from mechanics.audio_resources import audio_resource
 
 class MenuButton:
     def __init__(self, x, y, image, scaleX, scaleY, onClick, text):
@@ -23,6 +23,7 @@ class MenuButton:
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 if self.onclick:
                     self.onclick()
+                    audio_resource.button_sound.play()
                     self.clicked = True
             if pygame.mouse.get_pressed()[0] == 0:
                 self.clicked = False

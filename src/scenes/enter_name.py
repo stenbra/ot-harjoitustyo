@@ -1,6 +1,7 @@
 import pygame
 from ui.menu_button import MenuButton
 from mechanics.scene import Scene
+from mechanics.audio_resources import audio_resource
 
 
 class EnterName(Scene):
@@ -78,3 +79,8 @@ class EnterName(Scene):
     
     def to_menu(self):
         self.scenemanager.set_active_scene("main-menu")
+
+    def on_activate(self):
+        audio_resource.play_anouncer_sound("NAME")
+        pygame.mixer.music.pause()
+        return super().on_activate()

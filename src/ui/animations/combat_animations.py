@@ -2,6 +2,7 @@ from ui.animations.character_anim_rescource import anim_resource
 from mechanics.animations import Animation
 from ui.animations.combat_comparison import image_appear
 import pygame
+from mechanics.audio_resources import audio_resource
 
 
 class character_animation(Animation):
@@ -69,13 +70,16 @@ class combat_animation_matcher(Animation):
         elif self.faster==None and action_1 == "ATTACK" and action_2 == "ATTACK" or self.faster==None and action_1 == "GUARDBREAK" and action_2 == "GUARDBREAK":
             anim = attack_vs_attack(duration=duration)
             self.sub_animations.append(anim)
+            audio_resource.play_clink()
             return
         elif self.faster==2 and action_1 == "ATTACK" and action_2=="GUARD":
             anim = block_vs_attack(duration=duration)
             self.sub_animations.append(anim)
+            audio_resource.play_clink()
             return
         elif self.faster==1 and action_2 == "ATTACK" and action_1=="GUARD":
             anim = attack_vs_block(duration=duration)
+            audio_resource.play_clink()
             self.sub_animations.append(anim)
             return
         
@@ -287,7 +291,7 @@ class enemy_dodge(Animation):
         scale=[4] * len(anim_resource.enemy_dodge)
         pos=[]
         for i in range(len(anim_resource.enemy_dodge)):
-            if i<len(move_offset):
+            if i<len(move_offset) and i < len(anim_resource.enemy_dodge_pos_offset):
                 pos.append([640+anim_resource.enemy_dodge_pos_offset[i][0]+move_offset[i][0],360+anim_resource.enemy_dodge_pos_offset[i][1]+move_offset[i][1]])
             elif i < len(anim_resource.enemy_dodge_pos_offset):
                 pos.append([640+anim_resource.enemy_dodge_pos_offset[i][0],360+anim_resource.enemy_dodge_pos_offset[i][1]])

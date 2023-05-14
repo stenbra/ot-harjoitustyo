@@ -10,3 +10,5 @@ class Scene:
 
     def get_scene_name(self):
         return self.name
+    def on_activate(self):
+        pass

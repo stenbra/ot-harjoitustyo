@@ -29,3 +29,4 @@ class Scenemanager:
     def set_active_scene(self, scene_name):
         if scene_name in self.scenes:
             self.active_scene = self.scenes[scene_name]
+            self.active_scene.on_activate()

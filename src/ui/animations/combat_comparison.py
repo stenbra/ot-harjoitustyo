@@ -1,6 +1,7 @@
 import pygame
 import random
 from mechanics.animations import Animation
+from mechanics.audio_resources import audio_resource
 class backround_box_move(Animation):
     def __init__(self, start=0, duration=1, sub_animations=[], on_animation_end=[],text=""):
         super().__init__(start, duration, sub_animations, on_animation_end)
@@ -42,6 +43,9 @@ class backround_box_move_random_color(Animation):
         round_text_appear.play()
         self.sub_animations.append(round_text_appear)
 
+    def stop(self):
+        audio_resource.play_anouncer_sound("NEW")
+        return super().stop()
     def render(self, screen):
         pygame.draw.rect(screen, self.back_ground_color,
                          (self.x_pos+100, self.y_pos, 4000, 220))

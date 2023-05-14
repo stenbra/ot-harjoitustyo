@@ -95,3 +95,7 @@ class Game(Scene):
             else:
                 i.health.health_bar.update_health_bar(
                     [950, 50], 300, 20, self.scenemanager.screen)
+                
+    def on_activate(self):
+        pygame.mixer.music.pause()
+        return super().on_activate()

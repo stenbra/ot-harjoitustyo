@@ -1,4 +1,5 @@
 import pygame
+from mechanics.audio_resources import audio_resource
 
 
 class Card:
@@ -34,6 +35,7 @@ class Card:
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 if self.onclick:
                     self.onclick(self.action, self.id)
+                    audio_resource.button_sound.play()
                     self.clicked = True
             if pygame.mouse.get_pressed()[0] == 0:
                 self.clicked = False

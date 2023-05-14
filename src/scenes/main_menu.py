@@ -1,7 +1,7 @@
 import pygame
 from ui.menu_button import MenuButton
 from mechanics.scene import Scene
-
+from mechanics.audio_resources import audio_resource
 
 class MainMenuScene(Scene):
     def __init__(self, sceneName):
@@ -59,7 +59,6 @@ class MainMenuScene(Scene):
 
     def end(self):
         pygame.quit()
-        print("out")
         quit()
 
     def continue_game(self):
@@ -73,5 +72,10 @@ class MainMenuScene(Scene):
 
 
     def start(self):
+        audio_resource.set_random_anouncer()
         self.scenemanager.set_active_scene("name")
         self.scenemanager.get_scene_by_name("name").reset_scene()
+
+    def on_activate(self):
+        pygame.mixer.music.unpause()
+        return super().on_activate()

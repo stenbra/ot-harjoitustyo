@@ -5,6 +5,7 @@ from mechanics.call_back import call_back
 import time
 from ui.animations.combat_comparison import backround_box_move,backround_box_move_random_color,combat_time,game_over
 from ui.animations.combat_animations import combat_animation_matcher,enemy_die
+from mechanics.audio_resources import audio_resource
 
 class TurnHandler:
     def __init__(self, players, cardpool, card_positions, card_comparer, animation_handler,game_over, game_mode="PVE"):
@@ -55,6 +56,7 @@ class TurnHandler:
         self.combat_data = None
         self.turn = self.turn+1
         animation = backround_box_move(0,2,text="ROUND "+str(self.turn))
+        audio_resource.play_anouncer_sound("ROUND")
         self.animation_handler.add_to_animation_queue(animation)
 
     def end_turn(self):
@@ -128,12 +130,14 @@ class TurnHandler:
         self.state = 3
         animation= enemy_die(0,2)
         self.animation_handler.force_animation(animation)  
+        audio_resource.play_anouncer_sound("DEATH")
         animation_1= backround_box_move_random_color(0,2,text="NEW CHALLENGER")
         self.animation_handler.add_to_animation_queue(animation_1)     
 
     def get_computer_opponent(self):
         return Player("CO-Mput_ER",is_bot=True)
     def game_over(self):
+        audio_resource.play_anouncer_sound("DEATH")
         self.on_game_over()
     def check_for_rounds(self):
         if len(self.combat_data)==0:
