@@ -38,9 +38,6 @@ class EnterName(Scene):
         self.name_empty_rect.center = (640, 300)
         self.name_empty_check = False
 
-        
-
-
     def text_handling(self):
          for event in self.scenemanager.events:
             if event.type == pygame.KEYDOWN:
@@ -51,7 +48,6 @@ class EnterName(Scene):
                 else:
                     self.challenger_name += event.unicode
                 self.txt_surface = self.font.render(self.challenger_name, True, (0, 0, 0))
-
             
     def update(self):
         self.text_handling()

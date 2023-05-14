@@ -71,9 +71,12 @@ class Game(Scene):
         for i in self.turn_handler.players:
             if i.id == self.local_player_id:
                 name = i.name
+        entry = {}
+        entry[name] = self.turn_handler.score
         the_scoreboard.update_scoreboard(name,self.turn_handler.score)
         self.reset_scene()
-        self.scenemanager.set_active_scene("main-menu")
+        self.scenemanager.set_active_scene("score")
+        self.scenemanager.get_scene_by_name("score").highlight = entry
 
     def update_health(self):
         for i in self.turn_handler.players:

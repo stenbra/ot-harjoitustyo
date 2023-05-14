@@ -83,6 +83,43 @@ class image_appear(Animation):
     def render(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
 
+    def stop(self):
+        self.rect.center =(-2000,-2000)
+        return super().setup()
+
+
+class game_over(Animation):
+    def __init__(self, start=0, duration=1, sub_animations=[], on_animation_end=[],text=""):
+        super().__init__(start, duration, sub_animations, on_animation_end)
+        self.x_pos = 0
+        self.y_pos = 0
+        self.back_ground_color = (255,40,150)
+        self.color = (255,0,0)
+        self.text= text
+        self.alpha=0
+        
+
+    def setup(self):
+        self.sub_animations=[]
+        self.x_pos = 1280
+        self.y_pos = 250
+        self.alpha=0
+        round_text_appear =text_appear(0.3,0.75,text=self.text,shadow=True)
+        round_text_appear.play()
+        self.sub_animations.append(round_text_appear)
+
+    def render(self, screen):
+        pygame.draw.rect(screen, (0,0,0,self.alpha),
+                         (0, 0, 4000, 4000))
+        pygame.draw.rect(screen, self.back_ground_color,
+                         (self.x_pos+100, self.y_pos, 4000, 220))
+        pygame.draw.rect(screen, self.color,
+                         (self.x_pos, self.y_pos+35, 4200, 150))
+        self.x_pos -=3
+        self.alpha +=0.1
+        if self.alpha > 255:
+            self.alpha = 255
+
 class combat_time(Animation):
     def __init__(self,data_dict,cardPool, start=0, duration=1, sub_animations=[], on_animation_end=[]):
         super().__init__(start, duration, sub_animations, on_animation_end)
@@ -119,8 +156,6 @@ class combat_time(Animation):
         self.y_pos = 200
         p1_name_font_size = max(min(28,int(28*(14/len(self.player1_name)))),12)
         p2_name_font_size = max(min(28,int(28*(14/len(self.player2_name)))),12)
-        print(p1_name_font_size)
-        print(p2_name_font_size)
         p1_name_text_appear =text_appear(0.4,5.7,text=self.player1_name,x_pos=140,fontsize=p1_name_font_size)
         p1_name_text_appear.play()
         p2_name_text_appear =text_appear(0.9,5,text=self.player2_name,x_pos=1140,fontsize=p2_name_font_size)

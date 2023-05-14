@@ -7,15 +7,16 @@ class Scoreboard:
         self.path = path
         self.scoreboard ={}
         self.load_scoreboard()
+        self.update_scoreboard()
 
-    def update_scoreboard(self,name,score):
+    def update_scoreboard(self,name = None,score= None):
         scoreboard_entries =[]
-        new_entry = {}
-        new_entry["name"]=name
-        new_entry["score"]=score
-        scoreboard_entries.append(new_entry)
+        if name is not None and score is not None:
+            new_entry = {}
+            new_entry["name"]=name
+            new_entry["score"]=score
+            scoreboard_entries.append(new_entry)
         for i in self.scoreboard:
-            print(self.scoreboard[i])
             scoreboard_entries.append(self.scoreboard[i])
         sorted_scoreboard=sorted(scoreboard_entries,key=lambda x: x["score"],reverse=True)
         self.scoreboard = {}
@@ -23,14 +24,11 @@ class Scoreboard:
              self.scoreboard[i+1] = sorted_scoreboard[i]
         self.save_scoreboard(self.scoreboard)
              
-              
-
     def load_scoreboard(self):
         print("loading")
         if path.isfile(self.path+"scoreboard.json"):
             with open(self.path+"scoreboard.json","r") as open_file:
                 self.scoreboard = json.load(open_file)
-                print(self.scoreboard)
 
     def save_scoreboard(self,score_data):
         with open(self.path+"scoreboard.json","w") as open_file:

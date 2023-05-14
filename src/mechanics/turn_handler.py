@@ -3,7 +3,8 @@ from mechanics.health import Health
 from mechanics.player import Player
 from mechanics.call_back import call_back
 import time
-from ui.animations.combat_comparison import backround_box_move,backround_box_move_random_color,combat_time
+from ui.animations.combat_comparison import backround_box_move,backround_box_move_random_color,combat_time,game_over
+from ui.animations.combat_animations import combat_animation_matcher
 
 class TurnHandler:
     def __init__(self, players, cardpool, card_positions, card_comparer, animation_handler,game_over, game_mode="PVE"):
@@ -111,7 +112,9 @@ class TurnHandler:
             self.score += 1
             self.new_challenger()
             return
-        self.game_over()
+        animation= game_over(0,2,text="GAME OVER")
+        self.animation_handler.force_animation(animation)   
+        self.state=4
 
     def new_challenger(self):
         for i in self.players:
@@ -135,8 +138,11 @@ class TurnHandler:
             return
         round = self.combat_data.pop(0)
         after_animation_functions = self.get_after_round_callbacks(round)
-        animation = combat_time(round,self.cardpool,duration=6,on_animation_end=after_animation_functions)
+        animation = combat_time(round,self.cardpool,duration=6)
         self.animation_handler.add_to_animation_queue(animation)
+        battle_animation = combat_animation_matcher(round,duration=6,on_animation_end=after_animation_functions)
+        self.animation_handler.add_to_animation_queue(battle_animation)
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     
     def update(self):
         self.animation_handler.update()
@@ -151,3 +157,5 @@ class TurnHandler:
                     self.state =3
         if self.state==3 and self.animation_handler.is_not_running_and_empty_queue():
             self.end_turn()
+        if self.state==4 and self.animation_handler.is_not_running_and_empty_queue():
+            self.game_over()
