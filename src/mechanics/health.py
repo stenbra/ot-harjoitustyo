@@ -3,7 +3,7 @@ from mechanics.call_back import call_back
 
 
 class Health:
-    def __init__(self, player , death_event, max_health=7):
+    def __init__(self, player , death_event, max_health=1):
         self.max_health = max_health
         self.current_health = max_health
         self.death_event = death_event

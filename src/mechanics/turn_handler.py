@@ -4,7 +4,7 @@ from mechanics.player import Player
 from mechanics.call_back import call_back
 import time
 from ui.animations.combat_comparison import backround_box_move,backround_box_move_random_color,combat_time,game_over
-from ui.animations.combat_animations import combat_animation_matcher
+from ui.animations.combat_animations import combat_animation_matcher,enemy_die
 
 class TurnHandler:
     def __init__(self, players, cardpool, card_positions, card_comparer, animation_handler,game_over, game_mode="PVE"):
@@ -126,8 +126,10 @@ class TurnHandler:
         self.players.append(challenger)
         self.hands[challenger.id] = Hand(challenger, self.cardpool, self.card_positions, self)
         self.state = 3
-        animation= backround_box_move_random_color(0,2,text="NEW CHALLENGER")
-        self.animation_handler.force_animation(animation)     
+        animation= enemy_die(0,2)
+        self.animation_handler.force_animation(animation)  
+        animation_1= backround_box_move_random_color(0,2,text="NEW CHALLENGER")
+        self.animation_handler.add_to_animation_queue(animation_1)     
 
     def get_computer_opponent(self):
         return Player("CO-Mput_ER",is_bot=True)
@@ -140,9 +142,8 @@ class TurnHandler:
         after_animation_functions = self.get_after_round_callbacks(round)
         animation = combat_time(round,self.cardpool,duration=6)
         self.animation_handler.add_to_animation_queue(animation)
-        battle_animation = combat_animation_matcher(round,duration=6,on_animation_end=after_animation_functions)
+        battle_animation = combat_animation_matcher(round,duration=2,on_animation_end=after_animation_functions)
         self.animation_handler.add_to_animation_queue(battle_animation)
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     
     def update(self):
         self.animation_handler.update()

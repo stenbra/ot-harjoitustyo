@@ -3,7 +3,7 @@ from mechanics.scene import Scene
 from mechanics.turn_handler import TurnHandler
 from mechanics.player import Player
 from mechanics.scoreboard import the_scoreboard
-
+from ui.animations.character_anim_rescource import anim_resource
 from ui.menu_button import MenuButton
 
 
@@ -26,6 +26,14 @@ class Game(Scene):
             0, 0, quit_img, 1, 1, None, one_text)
         self.marker_2 = MenuButton(
             0, 0, quit_img, 1, 1, None, two_text)
+        
+
+        imgWidth = anim_resource.enemy_idle.get_width()
+        imgHeight = anim_resource.enemy_idle.get_height()
+        self.enemy_img = pygame.transform.scale(
+        anim_resource.enemy_idle, (int(imgWidth)*4, int(imgHeight)*4))
+        self.e_rect = self.enemy_img.get_rect()
+        self.e_rect.center =(640,360)
 
         self.marker_list = [self.marker_1, self.marker_2]
 
@@ -50,6 +58,7 @@ class Game(Scene):
         self.update_health()
         self.turn_handler.update()
         if self.turn_handler.state == 1:
+            self.scenemanager.screen.blit(self.enemy_img, (self.e_rect.x, self.e_rect.y))
             self.turn_handler.hands[self.local_player_id].update_cards(
                 self.scenemanager.screen)
             self.lock_in_button.update(self.scenemanager.screen)

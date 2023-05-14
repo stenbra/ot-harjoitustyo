@@ -95,6 +95,7 @@ class Animation:
             self.end_call = True
             for function in self.on_animation_end:
                 function.call()
+        self.sub_animations ={}
         del self
 
     def render(self,screen):
