@@ -9,19 +9,15 @@ The application would not have different users apart from entering a score name 
 
 ## UserInterface 
 
-The application has four different Views: Start menu, enter name prompt (before game starts), the game itself, and a scoreboard.
- ![](./images/ui.jpg)
+The application has four different Views: Start menu, enter name prompt (before game starts), the game itself, a scoreboard and game rules.
+ ![](./images/ui.png)
 
-## Functionalities for the base version
+## Functionalities 
 
 - The player and the computer plays moves at the same time in a "rock-paper-scossor" manner
+- Turnbased combat
 - general gamelogic (cards, health, etc...)
-- Simple "AI" for the computer opponent
-- scoreboard (probably saving it locally to a file)
-
-## Ways to expand
-
-After the goal of the base version has been reached the following could be added:
-
-- selecting Custom movelist-decks befor starting the game
-- Peer to peer multiplayer
+- computer opponent
+- animations and sound
+- loading card data from a text filse so cards can quite easily be balanced
+- scoreboard (saving it locally to a json file)

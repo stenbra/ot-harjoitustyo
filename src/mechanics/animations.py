@@ -77,7 +77,7 @@ class AnimationHandler:
 
     def is_running(self):
         """ Checks if there currently is a playing animation.
-            returns True if there is, returns False if there is not one
+            Returns: True if there is, returns False if there is not one
         """
         if self.playing_animation is None:
             return False
@@ -85,7 +85,7 @@ class AnimationHandler:
     
     def is_not_running_and_empty_queue(self):
         """ Checks if there currently is no playing animation and also if the animation queue is empty
-            returns True if that is the case, returns False otherwise
+            Returns: True if that is the case, returns False otherwise
         """
         if self.playing_animation is None and len(self.animation_queue)==0:
             return True
