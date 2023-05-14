@@ -2,7 +2,7 @@
 
 ## The applications purpose
 
-The application would be a "En Garde" like game where the player battles the oponent using cards to decide the moves used (computer for now), the battle will be scored by the game based on health lost and number of moves used to win and elapsed time. There is a scoreboard displaying the 5 highest scores.
+The application would be a "En Garde" like game where the player battles the oponent using cards to decide the moves used (computer for now), the battle will be scored by the game based on health lost and number of moves used to win and elapsed time. There is a scoreboard displaying the 8 highest scores.
 
 ## Users
 The application would not have different users apart from entering a score name when the game is over
